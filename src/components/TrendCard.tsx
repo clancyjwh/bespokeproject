@@ -1,4 +1,3 @@
-```
 import { ArrowRight, Activity } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Trend } from '../types';
@@ -47,4 +46,3 @@ export function TrendCard({ trend }: TrendCardProps) {
     </div>
   );
 }
-```
