@@ -5,9 +5,10 @@ interface InfoCardProps {
 
 export function InfoCard({ title, value }: InfoCardProps) {
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-sm transition-shadow">
-      <div className="text-xs font-medium text-gray-500 mb-1">{title}</div>
-      <div className="text-sm font-medium text-gray-900">{value}</div>
+    <div className="glass-card rounded-xl p-5 border-white/5 hover:neon-border-emerald transition-all group overflow-hidden relative">
+      <div className="absolute top-0 right-0 w-16 h-16 bg-emerald-500/5 blur-xl -mr-8 -mt-8 group-hover:bg-emerald-500/10 transition-colors"></div>
+      <div className="text-[8px] font-black text-slate-600 uppercase tracking-[0.4em] mb-2">{title}</div>
+      <div className="text-sm font-black text-white uppercase tracking-tight">{value}</div>
     </div>
   );
 }

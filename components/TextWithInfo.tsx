@@ -22,10 +22,10 @@ export function TextWithInfo({ text, onShowDefinition, className = '' }: TextWit
           e.stopPropagation();
           onShowDefinition(definedTerm.term, definedTerm.definition);
         }}
-        className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0"
+        className="p-1 px-1.5 bg-white/5 hover:bg-white/10 rounded border border-white/5 text-slate-500 hover:text-cyan-400 transition-all flex-shrink-0 group/info"
         aria-label="Show definition"
       >
-        <Info className="w-4 h-4" />
+        <Info className="w-3 h-3 group-hover:scale-110 transition-transform" />
       </button>
     </span>
   );

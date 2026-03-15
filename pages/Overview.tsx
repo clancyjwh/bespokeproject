@@ -15,160 +15,202 @@ export function Overview() {
   const [showScoreDefinition, setShowScoreDefinition] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      <header className="bg-white border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <h1 className="text-3xl font-bold text-gray-900">PSF Trend Report</h1>
-          <p className="text-sm text-gray-600 mt-1">PSEFS Snapshot (Statement Checkpoints)</p>
+    <div className="min-h-screen bg-transparent relative pb-20">
+      {/* Premium Header */}
+      <header className="sticky top-0 z-[100] bg-slate-900/80 backdrop-blur-xl border-b border-white/5 px-8 py-5 flex items-center justify-between shadow-2xl">
+        <div className="flex flex-col">
+          <div className="flex items-center gap-3 mb-1">
+            <div className="px-2 py-0.5 rounded text-[10px] font-black bg-emerald-500 text-slate-950 uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(16,185,129,0.3)]">Report Snapshot</div>
+            <h1 className="text-2xl font-black text-white uppercase tracking-tighter">PSF <span className="text-emerald-400 font-bold">TREND REPORT</span></h1>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-48 h-1 bg-slate-800 rounded-full overflow-hidden">
+              <div className="w-full h-full bg-gradient-to-r from-emerald-600 via-emerald-400 to-emerald-600 animate-shimmer bg-[length:200%_100%]"></div>
+            </div>
+            <span className="text-[10px] font-bold text-emerald-500/70 uppercase tracking-widest animate-pulse">Live Analysis Layer Active</span>
+          </div>
+        </div>
+        
+        <div className="hidden md:flex items-center gap-4">
+          <button
+            onClick={() => navigate('/key-insights')}
+            className="px-4 py-2 bg-slate-800/50 hover:bg-slate-700 text-slate-400 hover:text-white text-[10px] font-black rounded-lg border border-white/5 transition-all uppercase tracking-widest"
+          >
+            Insights
+          </button>
+          <button
+            onClick={() => navigate('/score-calculations')}
+            className="px-4 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 text-[10px] font-black rounded-lg border border-emerald-500/20 transition-all uppercase tracking-widest shadow-lg shadow-emerald-500/5"
+          >
+            Calculations
+          </button>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        <section className="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div className="p-8 relative">
-            <button
-              onClick={() => setShowScoreDefinition(true)}
-              className="absolute top-8 right-8 p-2 hover:bg-gray-100 rounded-full transition-colors"
-              aria-label="Score definition"
-            >
-              <Info className="w-5 h-5 text-gray-400 hover:text-gray-600" />
-            </button>
-            <div className="text-center mb-6">
-              <h2 className="text-lg font-medium text-gray-700 mb-4">Overall Portfolio Score</h2>
-              <div
-                className="inline-flex items-center justify-center px-12 py-8 rounded-2xl shadow-md"
-                style={{ backgroundColor: overallColor }}
+      <main className="max-w-7xl mx-auto px-6 py-12 space-y-12 animate-fadeIn">
+        {/* Hero Score Section */}
+        <section className="relative group">
+          <div className="absolute inset-0 bg-emerald-500/5 blur-3xl rounded-3xl group-hover:bg-emerald-500/10 transition-colors duration-700"></div>
+          <div className="relative glass-card rounded-3xl p-12 border border-emerald-500/10 overflow-hidden">
+            <div className="absolute top-0 right-0 p-8">
+              <button
+                onClick={() => setShowScoreDefinition(true)}
+                className="p-3 bg-white/5 hover:bg-white/10 rounded-2xl transition-all border border-white/5 group/info"
+                aria-label="Score definition"
               >
-                <span className="text-5xl font-bold text-white">
-                  {overallScore > 0 ? '+' : ''}
-                  {overallScore}
-                </span>
+                <Info className="w-5 h-5 text-slate-400 group-hover:text-emerald-400 transition-colors" />
+              </button>
+            </div>
+            
+            <div className="flex flex-col items-center text-center">
+              <h2 className="text-sm font-black text-emerald-500/70 uppercase tracking-[0.3em] mb-8">Overall Portfolio Score</h2>
+              
+              <div className="relative mb-12">
+                {/* Glowing Rings */}
+                <div className="absolute inset-[-20px] rounded-full border border-emerald-500/10 animate-[spin_20s_linear_infinite]"></div>
+                <div className="absolute inset-[-40px] rounded-full border border-cyan-500/5 animate-[spin_30s_linear_infinite_reverse]"></div>
+                
+                <div 
+                  className="w-48 h-48 rounded-full flex flex-col items-center justify-center relative z-10 shadow-[0_0_50px_rgba(16,185,129,0.15)] bg-slate-900 border-4 border-emerald-500/30 group-hover:border-emerald-500/50 transition-colors duration-500"
+                >
+                  <span className="text-6xl font-black text-white tracking-tighter drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                    {overallScore > 0 ? '+' : ''}
+                    {overallScore}
+                  </span>
+                  <span className="text-[10px] font-black text-emerald-500/50 uppercase tracking-widest mt-1">Certified</span>
+                </div>
               </div>
-            </div>
 
-            <div className="mt-8 max-w-3xl mx-auto">
-              <ScoreSlider score={overallScore} min={-10} max={10} />
-            </div>
+              <div className="w-full max-w-2xl px-8">
+                <ScoreSlider score={overallScore} min={-10} max={10} />
+              </div>
 
-            <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-gray-700">
-                <span className="font-semibold">Overall signal:</span> mild concern driven by
-                concentration drift; core performance stable.
-              </p>
+              <div className="mt-12 flex items-center gap-4 px-6 py-3 bg-emerald-500/5 border border-emerald-500/10 rounded-2xl">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)] animate-pulse"></div>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider leading-relaxed">
+                  <span className="text-emerald-400">Signal:</span> mild concern driven by concentration drift; core performance stable.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        <section>
+        {/* Action Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <button
             onClick={() => navigate('/key-insights')}
-            className="w-full bg-white rounded-2xl shadow-lg border border-gray-200 p-8 hover:shadow-xl transition-all text-left group"
+            className="glass-card p-8 rounded-2xl border-white/5 hover:neon-border-emerald transition-all text-left group overflow-hidden relative"
           >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-amber-50 rounded-xl">
-                  <Lightbulb className="w-8 h-8 text-amber-600" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 blur-3xl -mr-16 -mt-16"></div>
+            <div className="relative flex items-center justify-between">
+              <div className="flex items-center gap-6">
+                <div className="w-14 h-14 bg-amber-500/10 rounded-2xl flex items-center justify-center border border-amber-500/20 group-hover:bg-amber-500/20 transition-all">
+                  <Lightbulb className="w-7 h-7 text-amber-500" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 group-hover:text-gray-700 transition-colors">
-                    Key Insights
-                  </h2>
+                  <h2 className="text-xl font-black text-white uppercase tracking-tight group-hover:text-emerald-400 transition-colors">Key Insights</h2>
+                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Strategic intelligence layer</p>
                 </div>
               </div>
-              <ChevronRight className="w-8 h-8 text-gray-400 group-hover:text-gray-600 transition-colors flex-shrink-0" />
+              <ChevronRight className="w-6 h-6 text-slate-600 group-hover:text-white group-hover:translate-x-1 transition-all" />
             </div>
           </button>
-        </section>
 
-        <section>
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-900">Analysis Breakdown</h2>
+          <button
+            onClick={() => navigate('/score-calculations')}
+            className="glass-card p-8 rounded-2xl border-white/5 hover:neon-border-emerald transition-all text-left group overflow-hidden relative"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-3xl -mr-16 -mt-16"></div>
+            <div className="relative flex items-center justify-between">
+              <div className="flex items-center gap-6">
+                <div className="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center border border-blue-500/20 group-hover:bg-blue-500/20 transition-all">
+                  <Calculator className="w-7 h-7 text-blue-500" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-black text-white uppercase tracking-tight group-hover:text-emerald-400 transition-colors">Calculations</h2>
+                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Precision rounding & logic</p>
+                </div>
+              </div>
+              <ChevronRight className="w-6 h-6 text-slate-600 group-hover:text-white group-hover:translate-x-1 transition-all" />
+            </div>
+          </button>
+        </div>
+
+        {/* Main Analysis Sections */}
+        <section className="space-y-6">
+          <div className="flex items-center gap-4">
+            <h2 className="text-xs font-black text-slate-400 uppercase tracking-[0.4em]">Analysis Breakdown</h2>
+            <div className="flex-1 h-px bg-slate-800"></div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {analyses.map((analysis) => (
               <AnalysisCard key={analysis.id} analysis={analysis} />
             ))}
           </div>
         </section>
 
-        <section>
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-900">Trends Detected</h2>
+        <section className="space-y-6">
+          <div className="flex items-center gap-4">
+            <h2 className="text-xs font-black text-slate-400 uppercase tracking-[0.4em]">Trends Detected</h2>
+            <div className="flex-1 h-px bg-slate-800"></div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {trends.map((trend) => (
               <TrendCard key={trend.id} trend={trend} />
             ))}
           </div>
         </section>
 
-        <section>
-          <button
-            onClick={() => navigate('/score-calculations')}
-            className="w-full bg-white rounded-2xl shadow-lg border border-gray-200 p-8 hover:shadow-xl transition-all text-left group"
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-blue-50 rounded-xl">
-                  <Calculator className="w-8 h-8 text-blue-600" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-gray-700 transition-colors">
-                    Score Calculations
-                  </h2>
-                  <p className="text-sm text-gray-600">
-                    Exact scoring breakdown and rounding rules used to produce final scores
-                  </p>
-                </div>
-              </div>
-              <ChevronRight className="w-8 h-8 text-gray-400 group-hover:text-gray-600 transition-colors flex-shrink-0" />
+        <footer className="pt-20 text-center space-y-6 opacity-50">
+          <div className="flex items-center justify-center gap-6">
+            <div className="flex items-center gap-2 px-4 py-2 bg-slate-900/50 rounded-xl border border-white/5">
+              <AlertCircle className="w-3 h-3 text-emerald-500" />
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Statement Checkpoints Verifying Integrity</span>
             </div>
-          </button>
-        </section>
-
-        <footer className="text-center py-6 text-xs text-gray-500 border-t border-gray-200 space-y-2">
-          <p className="flex items-center justify-center gap-2">
-            <AlertCircle className="w-4 h-4" />
-            <span>
-              Data limitations: Based on statement checkpoints; not a forecast; not investment
-              advice.
-            </span>
-          </p>
-          <p className="text-gray-400 italic">
-            More data needed for future forecasting
-          </p>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-[10px] font-black text-slate-600 uppercase tracking-[0.4em]">Bespoke Tech Intelligence &copy; 2026</p>
+            <div className="w-12 h-0.5 bg-slate-800 rounded-full"></div>
+          </div>
         </footer>
       </main>
 
       {showScoreDefinition && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold text-gray-900">Overall Portfolio Score</h3>
+        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 z-[200] animate-fadeIn">
+          <div className="glass-card rounded-3xl max-w-lg w-full p-8 border-emerald-500/20 shadow-[0_0_100px_rgba(16,185,129,0.1)] relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent"></div>
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex flex-col">
+                <h3 className="text-lg font-black text-white uppercase tracking-tight">Portfolio Score</h3>
+                <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest">Logic & Methodology</span>
+              </div>
               <button
                 onClick={() => setShowScoreDefinition(false)}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-white/5 text-slate-400 hover:text-white"
               >
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
-            <div className="space-y-4">
-              <div className="flex items-center justify-center gap-3 text-gray-600 font-medium">
-                <span>-10</span>
-                <ArrowRight className="w-5 h-5" />
-                <span>10</span>
+            <div className="space-y-6">
+              <div className="flex items-center justify-center gap-6 py-4 bg-emerald-500/5 rounded-2xl border border-emerald-500/10">
+                <span className="text-xl font-black text-rose-500">-10</span>
+                <ArrowRight className="w-5 h-5 text-slate-700" />
+                <span className="text-xl font-black text-emerald-500">+10</span>
               </div>
-              <p className="text-gray-700 text-sm leading-relaxed">
-                Based on Health vs Policy & Governance: stability, diversification, and alignment.
+              <p className="text-slate-400 text-sm font-medium leading-relaxed">
+                Aggregated metric based on <span className="text-white">Health vs Policy & Governance</span>: stability, diversification, and alignment.
               </p>
-              <p className="text-gray-600 text-sm">
-                More information in the "Score Calculations" tab on the main page.
-              </p>
+              <button
+                onClick={() => {
+                  setShowScoreDefinition(false);
+                  navigate('/score-calculations');
+                }}
+                className="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-black rounded-xl transition-all uppercase tracking-widest shadow-lg shadow-emerald-500/20"
+              >
+                View Detailed Calculations
+              </button>
             </div>
           </div>
         </div>

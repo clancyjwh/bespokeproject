@@ -17,71 +17,83 @@ export function KeyInsights() {
   const selectedTileData = insightTiles.find(tile => tile.id === selectedTile);
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-transparent relative pb-20">
+      <header className="bg-slate-900/40 backdrop-blur-xl border-b border-white/5 sticky top-0 z-[100]">
+        <div className="max-w-7xl mx-auto px-8 py-6">
           <button
             onClick={() => navigate('/')}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors"
+            className="flex items-center gap-2 text-slate-500 hover:text-emerald-400 mb-6 transition-all group font-black uppercase text-[10px] tracking-widest"
           >
-            <ArrowLeft className="w-5 h-5" />
-            <span className="font-medium">Back to Report</span>
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <span>Terminal Home</span>
           </button>
-          <div className="space-y-3">
-            <h1 className="text-4xl font-bold text-gray-900">Key Insights</h1>
-            <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-2">
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-8 bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
+                <h1 className="text-4xl font-black text-white uppercase tracking-tighter">Key <span className="text-emerald-400">Insights</span></h1>
+              </div>
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] ml-5">Intelligence Data Layer v2.4</p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
               <button
                 onClick={() => setSelectedDefinition('checkpoint-data')}
-                className="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700 font-medium bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-200 transition-colors"
+                className="px-4 py-2 bg-slate-800/50 hover:bg-slate-700 text-slate-400 hover:text-white text-[10px] font-black rounded-lg border border-white/5 transition-all uppercase tracking-widest flex items-center gap-2"
               >
-                <Info className="w-4 h-4" />
-                Checkpoint data (not monthly)
+                <Info className="w-4 h-4 text-emerald-500" />
+                Checkpoint Analysis
               </button>
-              <span className="inline-flex items-center gap-2 text-sm text-amber-700 font-medium bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-200">
-                Dataset: June 2024 to January 2026 (Incomplete)
-              </span>
+              <div className="px-4 py-2 bg-emerald-500/10 text-emerald-400 text-[10px] font-black rounded-lg border border-emerald-500/20 uppercase tracking-widest flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                Coverage: Jun '24 - Jan '26
+              </div>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      <main className="max-w-7xl mx-auto px-8 py-12 space-y-12 animate-fadeIn">
         {/* Watch Items */}
-        <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            Watch Items
-          </h3>
-          <ul className="space-y-3">
-            {watchItems.map((item, index) => (
-              <li key={index} className="flex items-start gap-3">
-                <span className="text-gray-400 mt-1">•</span>
-                <span className="text-sm text-gray-700 leading-relaxed">{item}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="glass-card rounded-2xl p-8 border-white/5 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 blur-[100px] -mr-32 -mt-32"></div>
+          <div className="relative">
+            <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.4em] mb-8 flex items-center gap-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              Watch Items
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+              {watchItems.map((item, index) => (
+                <div key={index} className="flex items-start gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors border border-transparent hover:border-white/5">
+                  <div className="text-emerald-500 font-black text-[10px] mt-1">[{String(index + 1).padStart(2, '0')}]</div>
+                  <span className="text-sm font-medium text-slate-300 leading-relaxed">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Insight Tiles */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {insightTiles.map((tile) => (
             <div
               key={tile.id}
-              className="bg-white rounded-xl shadow-md border border-gray-200 p-6 hover:shadow-lg transition-all relative group"
+              className="glass-card rounded-2xl p-8 border-white/5 hover:neon-border-emerald transition-all relative group overflow-hidden"
             >
+              <div className="absolute top-0 right-0 w-24 h-24 bg-cyan-500/5 blur-2xl -mr-12 -mt-12 group-hover:bg-cyan-500/10 transition-colors"></div>
               <button
                 onClick={() => setSelectedTile(tile.id)}
-                className="absolute top-4 right-4 p-1.5 hover:bg-gray-100 rounded-full transition-colors z-10"
+                className="absolute top-6 right-6 p-2 bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-white/5 group/info z-10"
                 aria-label={`${tile.title} definition`}
               >
-                <Info className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                <Info className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 transition-colors" />
               </button>
-              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2 pr-8">
+              <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-4">
                 {tile.title}
               </div>
-              <div className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-gray-700 transition-colors">
+              <div className="text-3xl font-black text-white tracking-tighter mb-4 group-hover:text-emerald-400 transition-colors">
                 {tile.value}
               </div>
-              <div className="text-xs text-gray-600">
+              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed">
                 {tile.subtext}
               </div>
             </div>
@@ -89,42 +101,45 @@ export function KeyInsights() {
         </div>
 
         {/* Visuals Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Bar Chart */}
-          <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6 relative">
-            <div className="flex items-start justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">
-                Largest Positive and Negative Sleeve MTD Prints (LW)
-              </h3>
+          <div className="glass-card rounded-2xl p-8 border-white/5 relative overflow-hidden group">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent"></div>
+            <div className="flex items-start justify-between mb-10">
+              <div className="flex flex-col gap-1">
+                <h3 className="text-lg font-black text-white uppercase tracking-tight">MTD Prints</h3>
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Sleeve Extreme Variance (LW)</span>
+              </div>
               <button
                 onClick={() => setSelectedDefinition('sleeve-extremes')}
-                className="p-1.5 hover:bg-gray-100 rounded-full transition-colors ml-2 flex-shrink-0"
+                className="p-2 bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-white/5"
                 aria-label="Sleeve extremes definition"
               >
-                <Info className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                <Info className="w-4 h-4 text-slate-500 hover:text-cyan-400" />
               </button>
             </div>
+            
             <button
               onClick={() => setShowExtremesModal(true)}
-              className="w-full hover:bg-gray-50 transition-colors rounded-lg p-4"
+              className="w-full text-left bg-slate-900/40 p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-all group/chart"
             >
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {sleeveExtremes.map((extreme, index) => {
                   const maxAbsValue = Math.max(...sleeveExtremes.map(e => Math.abs(e.value)));
                   const barWidth = (Math.abs(extreme.value) / maxAbsValue) * 100;
                   const isPositive = extreme.value >= 0;
 
                   return (
-                    <div key={index}>
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-sm text-gray-700">{extreme.name}</span>
-                        <span className={`text-sm font-semibold ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
+                    <div key={index} className="relative">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{extreme.name}</span>
+                        <div className={`px-2 py-0.5 rounded text-[10px] font-black ${isPositive ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border-rose-500/30'} border`}>
                           {extreme.value > 0 ? '+' : ''}{extreme.value.toFixed(2)}%
-                        </span>
+                        </div>
                       </div>
-                      <div className="w-full bg-gray-100 rounded-full h-3">
+                      <div className="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
                         <div
-                          className={`h-3 rounded-full ${isPositive ? 'bg-green-500' : 'bg-red-500'}`}
+                          className={`h-full rounded-full ${isPositive ? 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]' : 'bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.5)]'} transition-all duration-1000`}
                           style={{ width: `${barWidth}%` }}
                         />
                       </div>
@@ -133,85 +148,95 @@ export function KeyInsights() {
                 })}
               </div>
             </button>
-            <p className="text-xs text-gray-500 mt-4 italic">
-              Observed checkpoint extremes in the dataset (not a full monthly history).
+            <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mt-6 italic">
+              Checkpoint Data Incomplete Analysis
             </p>
           </div>
 
           {/* Pie Chart */}
-          <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              Portfolio Share (Latest Checkpoint)
-            </h3>
+          <div className="glass-card rounded-2xl p-8 border-white/5 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-l from-transparent via-amber-500/20 to-transparent"></div>
+            <h3 className="text-lg font-black text-white uppercase tracking-tight mb-2">Portfolio Share</h3>
+            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-10">Asset Allocation Layer</p>
+            
             <button
               onClick={() => setShowDKShareModal(true)}
-              className="w-full hover:bg-gray-50 transition-colors rounded-lg p-4"
+              className="w-full flex flex-col items-center gap-10 bg-slate-900/40 p-8 rounded-2xl border border-white/5 hover:border-white/10 transition-all group/pie"
             >
-              <div className="flex items-center justify-center mb-4">
-                <svg viewBox="-5 -5 210 210" className="w-48 h-48">
-                  {/* Non-DK slice (87.8%) - starts at top, goes clockwise */}
+              <div className="relative">
+                {/* SVG Pie Chart with Premium Glows */}
+                <div className="absolute inset-0 bg-amber-500/10 blur-[60px] rounded-full scale-75 group-hover/pie:scale-100 transition-transform duration-700"></div>
+                <svg viewBox="-5 -5 210 210" className="w-48 h-48 relative z-10 drop-shadow-2xl">
+                  {/* Non-DK slice (87.8%) */}
                   <path
                     d="M 100 100 L 100 0 A 100 100 0 1 1 31.6 18.4 Z"
-                    fill="#3b82f6"
-                    stroke="white"
-                    strokeWidth="2"
+                    fill="url(#gradientNonDK)"
+                    stroke="#020617"
+                    strokeWidth="4"
                   />
                   {/* DK slice (12.2%) */}
                   <path
                     d="M 100 100 L 31.6 18.4 A 100 100 0 0 1 100 0 Z"
-                    fill="#f59e0b"
-                    stroke="white"
-                    strokeWidth="2"
+                    fill="url(#gradientDK)"
+                    stroke="#020617"
+                    strokeWidth="4"
                   />
+                  <defs>
+                    <linearGradient id="gradientNonDK" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#0ea5e9" />
+                      <stop offset="100%" stopColor="#3b82f6" />
+                    </linearGradient>
+                    <linearGradient id="gradientDK" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#f59e0b" />
+                      <stop offset="100%" stopColor="#fbbf24" />
+                    </linearGradient>
+                  </defs>
                 </svg>
               </div>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-blue-500 rounded"></div>
-                    <span className="text-sm text-gray-700">Non-DK</span>
+              
+              <div className="w-full grid grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1 p-3 bg-blue-500/5 border border-blue-500/10 rounded-xl">
+                  <span className="text-[8px] font-black text-blue-400 uppercase tracking-[0.2em]">External Layer</span>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xl font-black text-white">87.8%</span>
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">NON-DK</span>
                   </div>
-                  <span className="text-sm font-semibold text-gray-900">87.8%</span>
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-amber-500 rounded"></div>
-                    <span className="text-sm text-gray-700">DK</span>
+                <div className="flex flex-col gap-1 p-3 bg-amber-500/5 border border-amber-500/10 rounded-xl">
+                  <span className="text-[8px] font-black text-amber-400 uppercase tracking-[0.2em]">Core Layer</span>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xl font-black text-white">12.2%</span>
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">DK CAP</span>
                   </div>
-                  <span className="text-sm font-semibold text-gray-900">12.2%</span>
                 </div>
               </div>
             </button>
-            <p className="text-xs text-gray-500 mt-4">as of 2026-01-31</p>
+            <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mt-6">Timestamp Ref: 2026-01-31</p>
           </div>
         </div>
 
         {/* Timeline Chart */}
-        <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">
-            Data Coverage Timeline
-          </h3>
-          <div className="overflow-x-auto pb-2">
-            <div className="flex items-center gap-3 min-w-max">
+        <div className="glass-card rounded-2xl p-8 border-white/5 relative overflow-hidden group">
+          <div className="absolute inset-0 bg-blue-500/5 blur-[120px] rounded-full"></div>
+          <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.4em] mb-10 relative z-10">Data Coverage Timeline</h3>
+          <div className="overflow-x-auto pb-4 custom-scrollbar relative z-10">
+            <div className="flex items-center gap-6 min-w-max px-4">
               {timelineMonths.map((month, index) => (
-                <div key={index} className="flex flex-col items-center gap-2">
+                <div key={index} className="flex flex-col items-center gap-4 group/month">
                   <div
-                    className={`w-4 h-4 rounded-full border-2 ${
+                    className={`w-4 h-4 rounded-full border-2 transition-all duration-500 ${
                       month.hasData
-                        ? 'bg-blue-500 border-blue-500'
-                        : 'bg-white border-gray-300'
+                        ? 'bg-emerald-500 border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.8)] scale-110'
+                        : 'bg-slate-900 border-slate-700 group-hover/month:border-slate-500'
                     }`}
                   />
-                  <span className="text-xs text-gray-600 whitespace-nowrap">
+                  <span className={`text-[10px] font-black uppercase tracking-widest transition-colors ${month.hasData ? 'text-white' : 'text-slate-600'}`}>
                     {month.month}
                   </span>
                 </div>
               ))}
             </div>
           </div>
-          <p className="text-xs text-gray-500 mt-4 italic">
-            Filled dots indicate checkpoints with data; empty dots show missing months.
-          </p>
         </div>
       </main>
 

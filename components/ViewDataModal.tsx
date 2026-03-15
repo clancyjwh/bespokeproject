@@ -49,34 +49,39 @@ export function ViewDataModal({ series, onClose }: ViewDataModalProps) {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center z-[200] p-4 animate-fadeIn"
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-hidden"
+        className="glass-card rounded-3xl shadow-2xl max-w-2xl w-full max-h-[85vh] overflow-hidden border-white/5 relative"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h3 className="text-xl font-semibold text-gray-900">View Checkpoint Data</h3>
+        <div className="absolute inset-0 bg-cyan-500/5 pointer-events-none"></div>
+        
+        <div className="flex items-center justify-between p-8 border-b border-white/5 relative z-10">
+          <div className="flex flex-col">
+            <span className="text-[10px] font-black text-cyan-500 uppercase tracking-[0.4em] mb-1">Data Stream</span>
+            <h3 className="text-2xl font-black text-white uppercase tracking-tight">Checkpoint Matrix</h3>
+          </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
+            className="w-12 h-12 flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-2xl transition-all border border-white/5 text-slate-400 hover:text-white"
           >
             <X className="w-6 h-6" />
           </button>
         </div>
 
         {series.length > 1 && (
-          <div className="border-b border-gray-200 px-6 pt-4">
-            <div className="flex gap-2 flex-wrap">
+          <div className="border-b border-white/5 px-8 pt-4 bg-white/[0.02] relative z-10">
+            <div className="flex gap-4 flex-wrap">
               {series.map((s) => (
                 <button
                   key={s.name}
                   onClick={() => setSelectedSeries(s.name)}
-                  className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
+                  className={`px-6 py-3 text-[10px] font-black uppercase tracking-widest rounded-t-xl transition-all border-t border-x ${
                     selectedSeries === s.name
-                      ? 'bg-white text-blue-600 border-t border-x border-gray-200'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      ? 'bg-slate-900 text-cyan-500 border-white/10 shadow-[0_-10px_20px_-10px_rgba(6,182,212,0.2)]'
+                      : 'bg-transparent text-slate-500 border-transparent hover:text-slate-300'
                   }`}
                 >
                   {s.name}
@@ -86,26 +91,26 @@ export function ViewDataModal({ series, onClose }: ViewDataModalProps) {
           </div>
         )}
 
-        <div className="p-6 overflow-y-auto max-h-[calc(80vh-160px)]">
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Date
+        <div className="p-8 overflow-y-auto max-h-[calc(85vh-180px)] relative z-10 custom-scrollbar">
+          <div className="overflow-x-auto rounded-2xl border border-white/5 overflow-hidden">
+            <table className="min-w-full">
+              <thead>
+                <tr className="bg-white/5 border-b border-white/5">
+                  <th className="px-8 py-4 text-left text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">
+                    Temporal Marker
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Value
+                  <th className="px-8 py-4 text-right text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">
+                    Vector Value
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="divide-y divide-white/5">
                 {currentSeries.data.map((dataPoint, idx) => (
-                  <tr key={idx} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <tr key={idx} className="hover:bg-white/[0.02] transition-colors group">
+                    <td className="px-8 py-5 whitespace-nowrap text-sm font-black text-slate-300 uppercase tracking-wider">
                       {dataPoint.date}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-8 py-5 whitespace-nowrap text-right text-sm font-black text-white group-hover:text-cyan-400 transition-colors">
                       {formatValueWithUnit(dataPoint.value, unit)}
                     </td>
                   </tr>
