@@ -20,14 +20,31 @@ export function Overview() {
       <header className="sticky top-0 z-[100] bg-slate-900/80 backdrop-blur-xl border-b border-white/5 px-8 py-5 flex items-center justify-between shadow-2xl">
         <div className="flex flex-col">
           <div className="flex items-center gap-3 mb-1">
-            <div className="px-2 py-0.5 rounded text-[10px] font-black bg-emerald-500 text-slate-950 uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(16,185,129,0.3)]">Report Snapshot</div>
-            <h1 className="text-2xl font-black text-white uppercase tracking-tighter">PSF <span className="text-emerald-400 font-bold">TREND REPORT</span></h1>
+            <div 
+              className="px-2 py-0.5 rounded text-[10px] font-black text-slate-950 uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+              style={{ backgroundColor: overallColor }}
+            >
+              Report Snapshot
+            </div>
+            <h1 className="text-2xl font-black text-white uppercase tracking-tighter">
+              PSF <span style={{ color: overallColor }} className="font-bold">TREND REPORT</span>
+            </h1>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-48 h-1 bg-slate-800 rounded-full overflow-hidden">
-              <div className="w-full h-full bg-gradient-to-r from-emerald-600 via-emerald-400 to-emerald-600 animate-shimmer bg-[length:200%_100%]"></div>
+              <div 
+                className="w-full h-full bg-gradient-to-r animate-shimmer bg-[length:200%_100%]"
+                style={{ 
+                  backgroundImage: `linear-gradient(to right, ${overallColor}88, ${overallColor}, ${overallColor}88)` 
+                }}
+              ></div>
             </div>
-            <span className="text-[10px] font-bold text-emerald-500/70 uppercase tracking-widest animate-pulse">Live Analysis Layer Active</span>
+            <span 
+              className="text-[10px] font-bold uppercase tracking-widest animate-pulse"
+              style={{ color: `${overallColor}b3` }}
+            >
+              Live Analysis Layer Active
+            </span>
           </div>
         </div>
         
@@ -40,7 +57,13 @@ export function Overview() {
           </button>
           <button
             onClick={() => navigate('/score-calculations')}
-            className="px-4 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 text-[10px] font-black rounded-lg border border-emerald-500/20 transition-all uppercase tracking-widest shadow-lg shadow-emerald-500/5"
+            className="px-4 py-2 text-[10px] font-black rounded-lg border transition-all uppercase tracking-widest shadow-lg"
+            style={{ 
+              backgroundColor: `${overallColor}1a`,
+              color: overallColor,
+              borderColor: `${overallColor}33`,
+              boxShadow: `0 10px 15px -3px ${overallColor}0d`
+            }}
           >
             Calculations
           </button>
@@ -50,34 +73,63 @@ export function Overview() {
       <main className="max-w-7xl mx-auto px-6 py-12 space-y-12 animate-fadeIn">
         {/* Hero Score Section */}
         <section className="relative group">
-          <div className="absolute inset-0 bg-emerald-500/5 blur-3xl rounded-3xl group-hover:bg-emerald-500/10 transition-colors duration-700"></div>
-          <div className="relative glass-card rounded-3xl p-12 border border-emerald-500/10 overflow-hidden">
+          <div 
+            className="absolute inset-0 blur-3xl rounded-3xl transition-colors duration-700"
+            style={{ backgroundColor: `${overallColor}1a` }}
+          ></div>
+          <div 
+            className="relative glass-card rounded-3xl p-12 overflow-hidden border"
+            style={{ borderColor: `${overallColor}22` }}
+          >
             <div className="absolute top-0 right-0 p-8">
               <button
                 onClick={() => setShowScoreDefinition(true)}
                 className="p-3 bg-white/5 hover:bg-white/10 rounded-2xl transition-all border border-white/5 group/info"
                 aria-label="Score definition"
               >
-                <Info className="w-5 h-5 text-slate-400 group-hover:text-emerald-400 transition-colors" />
+                <Info 
+                  className="w-5 h-5 text-slate-400 transition-colors"
+                  style={{ color: showScoreDefinition ? overallColor : undefined }}
+                />
               </button>
             </div>
             
             <div className="flex flex-col items-center text-center">
-              <h2 className="text-sm font-black text-emerald-500/70 uppercase tracking-[0.3em] mb-8">Overall Portfolio Score</h2>
+              <h2 
+                className="text-sm font-black uppercase tracking-[0.3em] mb-8"
+                style={{ color: `${overallColor}b3` }}
+              >
+                Overall Portfolio Score
+              </h2>
               
               <div className="relative mb-12">
                 {/* Glowing Rings */}
-                <div className="absolute inset-[-20px] rounded-full border border-emerald-500/10 animate-[spin_20s_linear_infinite]"></div>
-                <div className="absolute inset-[-40px] rounded-full border border-cyan-500/5 animate-[spin_30s_linear_infinite_reverse]"></div>
+                <div 
+                  className="absolute inset-[-20px] rounded-full border animate-[spin_20s_linear_infinite]"
+                  style={{ borderColor: `${overallColor}22` }}
+                ></div>
+                <div 
+                  className="absolute inset-[-40px] rounded-full border animate-[spin_30s_linear_infinite_reverse]"
+                  style={{ borderColor: `${overallColor}11` }}
+                ></div>
                 
                 <div 
-                  className="w-48 h-48 rounded-full flex flex-col items-center justify-center relative z-10 shadow-[0_0_50px_rgba(16,185,129,0.15)] bg-slate-900 border-4 border-emerald-500/30 group-hover:border-emerald-500/50 transition-colors duration-500"
+                  className="w-48 h-48 rounded-full flex flex-col items-center justify-center relative z-10 bg-slate-900 border-4 transition-colors duration-500"
+                  style={{ 
+                    borderColor: `${overallColor}66`,
+                    boxShadow: `0 0 50px ${overallColor}26`
+                  }}
                 >
                   <span className="text-6xl font-black text-white tracking-tighter drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
                     {overallScore > 0 ? '+' : ''}
                     {overallScore}
                   </span>
-                  <span className="text-[10px] font-black text-emerald-500/50 uppercase tracking-widest mt-1">Certified</span>
+                  <span 
+                    className="text-[10px] font-black uppercase tracking-widest mt-1"
+                    style={{ color: `${overallColor}80` }}
+                  >
+                    Certified
+                  </span>
                 </div>
               </div>
 
@@ -85,10 +137,22 @@ export function Overview() {
                 <ScoreSlider score={overallScore} min={-10} max={10} />
               </div>
 
-              <div className="mt-12 flex items-center gap-4 px-6 py-3 bg-emerald-500/5 border border-emerald-500/10 rounded-2xl">
-                <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)] animate-pulse"></div>
+              <div 
+                className="mt-12 flex items-center gap-4 px-6 py-3 border rounded-2xl"
+                style={{ 
+                  backgroundColor: `${overallColor}11`,
+                  borderColor: `${overallColor}22`
+                }}
+              >
+                <div 
+                  className="w-2 h-2 rounded-full animate-pulse"
+                  style={{ 
+                    backgroundColor: overallColor,
+                    boxShadow: `0 0 10px ${overallColor}`
+                  }}
+                ></div>
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-wider leading-relaxed">
-                  <span className="text-emerald-400">Signal:</span> mild concern driven by concentration drift; core performance stable.
+                  <span style={{ color: overallColor }}>Signal:</span> mild concern driven by concentration drift; core performance stable.
                 </p>
               </div>
             </div>
@@ -99,7 +163,10 @@ export function Overview() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <button
             onClick={() => navigate('/key-insights')}
-            className="glass-card p-8 rounded-2xl border-white/5 hover:neon-border-emerald transition-all text-left group overflow-hidden relative"
+            className="glass-card p-8 rounded-2xl border-white/5 transition-all text-left group overflow-hidden relative active:scale-[0.98]"
+            style={{ 
+              '--hover-border': overallColor
+            } as React.CSSProperties}
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 blur-3xl -mr-16 -mt-16"></div>
             <div className="relative flex items-center justify-between">
@@ -108,7 +175,8 @@ export function Overview() {
                   <Lightbulb className="w-7 h-7 text-amber-500" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-black text-white uppercase tracking-tight group-hover:text-emerald-400 transition-colors">Key Insights</h2>
+                  <h2 className="text-xl font-black text-white uppercase tracking-tight group-hover:text-amber-400 transition-colors"
+                      style={{ color: undefined }}>Key Insights</h2>
                   <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Strategic intelligence layer</p>
                 </div>
               </div>
@@ -118,7 +186,10 @@ export function Overview() {
 
           <button
             onClick={() => navigate('/score-calculations')}
-            className="glass-card p-8 rounded-2xl border-white/5 hover:neon-border-emerald transition-all text-left group overflow-hidden relative"
+            className="glass-card p-8 rounded-2xl border-white/5 transition-all text-left group overflow-hidden relative active:scale-[0.98]"
+            style={{ 
+              '--hover-border': overallColor
+            } as React.CSSProperties}
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-3xl -mr-16 -mt-16"></div>
             <div className="relative flex items-center justify-between">
@@ -127,7 +198,7 @@ export function Overview() {
                   <Calculator className="w-7 h-7 text-blue-500" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-black text-white uppercase tracking-tight group-hover:text-emerald-400 transition-colors">Calculations</h2>
+                  <h2 className="text-xl font-black text-white uppercase tracking-tight group-hover:text-blue-400 transition-colors">Calculations</h2>
                   <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Precision rounding & logic</p>
                 </div>
               </div>
@@ -164,7 +235,7 @@ export function Overview() {
         <footer className="pt-20 text-center space-y-6 opacity-50">
           <div className="flex items-center justify-center gap-6">
             <div className="flex items-center gap-2 px-4 py-2 bg-slate-900/50 rounded-xl border border-white/5">
-              <AlertCircle className="w-3 h-3 text-emerald-500" />
+              <AlertCircle className="w-3 h-3" style={{ color: overallColor }} />
               <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Statement Checkpoints Verifying Integrity</span>
             </div>
           </div>
@@ -177,12 +248,23 @@ export function Overview() {
 
       {showScoreDefinition && (
         <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 z-[200] animate-fadeIn">
-          <div className="glass-card rounded-3xl max-w-lg w-full p-8 border-emerald-500/20 shadow-[0_0_100px_rgba(16,185,129,0.1)] relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent"></div>
+          <div 
+            className="glass-card rounded-3xl max-w-lg w-full p-8 shadow-2xl relative overflow-hidden"
+            style={{ borderColor: `${overallColor}33`, boxShadow: `0 0 100px ${overallColor}1a` }}
+          >
+            <div 
+              className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r"
+              style={{ backgroundImage: `linear-gradient(to right, transparent, ${overallColor}, transparent)` }}
+            ></div>
             <div className="flex items-center justify-between mb-8">
               <div className="flex flex-col">
                 <h3 className="text-lg font-black text-white uppercase tracking-tight">Portfolio Score</h3>
-                <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest">Logic & Methodology</span>
+                <span 
+                  className="text-[10px] font-bold uppercase tracking-widest"
+                  style={{ color: overallColor }}
+                >
+                  Logic & Methodology
+                </span>
               </div>
               <button
                 onClick={() => setShowScoreDefinition(false)}
@@ -194,10 +276,13 @@ export function Overview() {
               </button>
             </div>
             <div className="space-y-6">
-              <div className="flex items-center justify-center gap-6 py-4 bg-emerald-500/5 rounded-2xl border border-emerald-500/10">
+              <div 
+                className="flex items-center justify-center gap-6 py-4 rounded-2xl border"
+                style={{ backgroundColor: `${overallColor}0a`, borderColor: `${overallColor}1a` }}
+              >
                 <span className="text-xl font-black text-rose-500">-10</span>
                 <ArrowRight className="w-5 h-5 text-slate-700" />
-                <span className="text-xl font-black text-emerald-500">+10</span>
+                <span className="text-xl font-black" style={{ color: overallColor }}>+10</span>
               </div>
               <p className="text-slate-400 text-sm font-medium leading-relaxed">
                 Aggregated metric based on <span className="text-white">Health vs Policy & Governance</span>: stability, diversification, and alignment.
@@ -207,11 +292,15 @@ export function Overview() {
                   setShowScoreDefinition(false);
                   navigate('/score-calculations');
                 }}
-                className="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-black rounded-xl transition-all uppercase tracking-widest shadow-lg shadow-emerald-500/20"
+                className="w-full py-4 text-white text-[10px] font-black rounded-xl transition-all uppercase tracking-widest shadow-lg"
+                style={{ backgroundColor: overallColor, boxShadow: `0 10px 20px -5px ${overallColor}4d` }}
               >
                 View Detailed Calculations
               </button>
+            </button>
             </div>
+          </div>
+        </div>
           </div>
         </div>
       )}

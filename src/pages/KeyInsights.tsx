@@ -16,13 +16,17 @@ export function KeyInsights() {
 
   const selectedTileData = insightTiles.find(tile => tile.id === selectedTile);
 
+  const orangeTheme = '#f78911';
+
   return (
     <div className="min-h-screen bg-transparent relative pb-20">
       <header className="bg-slate-900/40 backdrop-blur-xl border-b border-white/5 sticky top-0 z-[100]">
         <div className="max-w-7xl mx-auto px-8 py-6">
           <button
             onClick={() => navigate('/')}
-            className="flex items-center gap-2 text-slate-500 hover:text-emerald-400 mb-6 transition-all group font-black uppercase text-[10px] tracking-widest"
+            className="flex items-center gap-2 text-slate-500 transition-all group font-black uppercase text-[10px] tracking-widest"
+            onMouseEnter={(e) => ((e.currentTarget as any).style.color = orangeTheme)}
+            onMouseLeave={(e) => ((e.currentTarget as any).style.color = '')}
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             <span>Terminal Home</span>
@@ -30,8 +34,13 @@ export function KeyInsights() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-2">
               <div className="flex items-center gap-3">
-                <div className="w-2 h-8 bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
-                <h1 className="text-4xl font-black text-white uppercase tracking-tighter">Key <span className="text-emerald-400">Insights</span></h1>
+                <div 
+                  className="w-2 h-8" 
+                  style={{ backgroundColor: orangeTheme, boxShadow: `0 0 15px ${orangeTheme}80` }}
+                ></div>
+                <h1 className="text-4xl font-black text-white uppercase tracking-tighter">
+                  Key <span style={{ color: orangeTheme }}>Insights</span>
+                </h1>
               </div>
               <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] ml-5">Intelligence Data Layer v2.4</p>
             </div>
@@ -39,12 +48,17 @@ export function KeyInsights() {
               <button
                 onClick={() => setSelectedDefinition('checkpoint-data')}
                 className="px-4 py-2 bg-slate-800/50 hover:bg-slate-700 text-slate-400 hover:text-white text-[10px] font-black rounded-lg border border-white/5 transition-all uppercase tracking-widest flex items-center gap-2"
+                onMouseEnter={(e) => ((e.currentTarget as any).style.borderColor = `${orangeTheme}4d`)}
+                onMouseLeave={(e) => ((e.currentTarget as any).style.borderColor = '')}
               >
-                <Info className="w-4 h-4 text-emerald-500" />
+                <Info className="w-4 h-4" style={{ color: orangeTheme }} />
                 Checkpoint Analysis
               </button>
-              <div className="px-4 py-2 bg-emerald-500/10 text-emerald-400 text-[10px] font-black rounded-lg border border-emerald-500/20 uppercase tracking-widest flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+              <div 
+                className="px-4 py-2 text-[10px] font-black rounded-lg border uppercase tracking-widest flex items-center gap-2 shadow-lg"
+                style={{ backgroundColor: `${orangeTheme}1a`, color: orangeTheme, borderColor: `${orangeTheme}33` }}
+              >
+                <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: orangeTheme }}></div>
                 Coverage: Jun '24 - Jan '26
               </div>
             </div>
@@ -55,16 +69,19 @@ export function KeyInsights() {
       <main className="max-w-7xl mx-auto px-8 py-12 space-y-12 animate-fadeIn">
         {/* Watch Items */}
         <div className="glass-card rounded-2xl p-8 border-white/5 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 blur-[100px] -mr-32 -mt-32"></div>
+          <div 
+            className="absolute top-0 right-0 w-64 h-64 blur-[100px] -mr-32 -mt-32"
+            style={{ backgroundColor: `${orangeTheme}0d` }}
+          ></div>
           <div className="relative">
             <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.4em] mb-8 flex items-center gap-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: orangeTheme }}></span>
               Watch Items
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
               {watchItems.map((item, index) => (
                 <div key={index} className="flex items-start gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors border border-transparent hover:border-white/5">
-                  <div className="text-emerald-500 font-black text-[10px] mt-1">[{String(index + 1).padStart(2, '0')}]</div>
+                  <div className="font-black text-[10px] mt-1" style={{ color: orangeTheme }}>[{String(index + 1).padStart(2, '0')}]</div>
                   <span className="text-sm font-medium text-slate-300 leading-relaxed">{item}</span>
                 </div>
               ))}
@@ -77,7 +94,15 @@ export function KeyInsights() {
           {insightTiles.map((tile) => (
             <div
               key={tile.id}
-              className="glass-card rounded-2xl p-8 border-white/5 hover:neon-border-emerald transition-all relative group overflow-hidden"
+              className="glass-card rounded-2xl p-8 border-white/5 transition-all relative group overflow-hidden"
+              onMouseEnter={(e) => {
+                (e.currentTarget as any).style.borderColor = `${orangeTheme}33`;
+                (e.currentTarget as any).style.boxShadow = `0 0 20px ${orangeTheme}1a`;
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as any).style.borderColor = '';
+                (e.currentTarget as any).style.boxShadow = '';
+              }}
             >
               <div className="absolute top-0 right-0 w-24 h-24 bg-cyan-500/5 blur-2xl -mr-12 -mt-12 group-hover:bg-cyan-500/10 transition-colors"></div>
               <button
@@ -85,12 +110,17 @@ export function KeyInsights() {
                 className="absolute top-6 right-6 p-2 bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-white/5 group/info z-10"
                 aria-label={`${tile.title} definition`}
               >
-                <Info className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 transition-colors" />
+                <Info className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
               </button>
               <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-4">
                 {tile.title}
               </div>
-              <div className="text-3xl font-black text-white tracking-tighter mb-4 group-hover:text-emerald-400 transition-colors">
+              <div 
+                className="text-3xl font-black text-white tracking-tighter mb-4 transition-colors"
+                style={{ color: undefined }}
+                onMouseEnter={(e) => (e.currentTarget as any).style.color = orangeTheme}
+                onMouseLeave={(e) => (e.currentTarget as any).style.color = ''}
+              >
                 {tile.value}
               </div>
               <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed">
@@ -128,19 +158,31 @@ export function KeyInsights() {
                   const maxAbsValue = Math.max(...sleeveExtremes.map(e => Math.abs(e.value)));
                   const barWidth = (Math.abs(extreme.value) / maxAbsValue) * 100;
                   const isPositive = extreme.value >= 0;
+                  const barColor = isPositive ? orangeTheme : '#f43f5e';
 
                   return (
                     <div key={index} className="relative">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{extreme.name}</span>
-                        <div className={`px-2 py-0.5 rounded text-[10px] font-black ${isPositive ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border-rose-500/30'} border`}>
+                        <div 
+                          className="px-2 py-0.5 rounded text-[10px] font-black border"
+                          style={{ 
+                            backgroundColor: `${barColor}33`, 
+                            color: barColor, 
+                            borderColor: `${barColor}4d` 
+                          }}
+                        >
                           {extreme.value > 0 ? '+' : ''}{extreme.value.toFixed(2)}%
                         </div>
                       </div>
                       <div className="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
                         <div
-                          className={`h-full rounded-full ${isPositive ? 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]' : 'bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.5)]'} transition-all duration-1000`}
-                          style={{ width: `${barWidth}%` }}
+                          className="h-full rounded-full transition-all duration-1000"
+                          style={{ 
+                            width: `${barWidth}%`, 
+                            backgroundColor: barColor, 
+                            boxShadow: `0 0 10px ${barColor}80` 
+                          }}
                         />
                       </div>
                     </div>
@@ -217,18 +259,23 @@ export function KeyInsights() {
 
         {/* Timeline Chart */}
         <div className="glass-card rounded-2xl p-8 border-white/5 relative overflow-hidden group">
-          <div className="absolute inset-0 bg-blue-500/5 blur-[120px] rounded-full"></div>
+          <div 
+            className="absolute inset-0 blur-[120px] rounded-full"
+            style={{ backgroundColor: `${orangeTheme}0d` }}
+          ></div>
           <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.4em] mb-10 relative z-10">Data Coverage Timeline</h3>
           <div className="overflow-x-auto pb-4 custom-scrollbar relative z-10">
             <div className="flex items-center gap-6 min-w-max px-4">
               {timelineMonths.map((month, index) => (
                 <div key={index} className="flex flex-col items-center gap-4 group/month">
                   <div
-                    className={`w-4 h-4 rounded-full border-2 transition-all duration-500 ${
-                      month.hasData
-                        ? 'bg-emerald-500 border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.8)] scale-110'
-                        : 'bg-slate-900 border-slate-700 group-hover/month:border-slate-500'
-                    }`}
+                    className="w-4 h-4 rounded-full border-2 transition-all duration-500"
+                    style={{ 
+                      backgroundColor: month.hasData ? orangeTheme : '#0f172a',
+                      borderColor: month.hasData ? orangeTheme : '#334155',
+                      boxShadow: month.hasData ? `0 0 15px ${orangeTheme}cc` : 'none',
+                      transform: month.hasData ? 'scale(1.1)' : 'scale(1)'
+                    }}
                   />
                   <span className={`text-[10px] font-black uppercase tracking-widest transition-colors ${month.hasData ? 'text-white' : 'text-slate-600'}`}>
                     {month.month}

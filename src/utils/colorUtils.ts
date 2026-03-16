@@ -11,7 +11,7 @@ export function getScoreColor(score: number): string {
     return interpolateColor('#f97316', '#fb923c', t);
   } else if (normalized < 0) {
     const t = (normalized + 4) / 4;
-    return interpolateColor('#fb923c', '#fbbf24', t);
+    return interpolateColor('#f97316', '#f59e0b', t); // orange-600 to amber-500
   } else if (normalized === 0) {
     return '#fbbf24';
   } else if (normalized <= 2) {
