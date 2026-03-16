@@ -24,10 +24,10 @@ export function Overview() {
               className="px-2 py-0.5 rounded text-[10px] font-black text-slate-950 uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(255,255,255,0.1)]"
               style={{ backgroundColor: overallColor }}
             >
-              Report Snapshot
+              Project Summary
             </div>
             <h1 className="text-2xl font-black text-white uppercase tracking-tighter">
-              PSF <span style={{ color: overallColor }} className="font-bold">TREND REPORT</span>
+              PORTFOLIO <span style={{ color: overallColor }} className="font-bold">HEALTH REPORT</span>
             </h1>
           </div>
           <div className="flex items-center gap-2">
@@ -99,20 +99,10 @@ export function Overview() {
                 className="text-sm font-black uppercase tracking-[0.3em] mb-8"
                 style={{ color: `${overallColor}b3` }}
               >
-                Overall Portfolio Score
+                Total Health Score
               </h2>
               
               <div className="relative mb-12">
-                {/* Glowing Rings */}
-                <div 
-                  className="absolute inset-[-20px] rounded-full border animate-[spin_20s_linear_infinite]"
-                  style={{ borderColor: `${overallColor}22` }}
-                ></div>
-                <div 
-                  className="absolute inset-[-40px] rounded-full border animate-[spin_30s_linear_infinite_reverse]"
-                  style={{ borderColor: `${overallColor}11` }}
-                ></div>
-                
                 <div 
                   className="w-48 h-48 rounded-full flex flex-col items-center justify-center relative z-10 bg-slate-900 border-4 transition-colors duration-500"
                   style={{ 
@@ -157,9 +147,14 @@ export function Overview() {
                     boxShadow: `0 0 10px ${overallColor}`
                   }}
                 ></div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider leading-relaxed">
-                  <span style={{ color: overallColor }}>Signal:</span> mild concern driven by concentration drift; core performance stable.
-                </p>
+                <div className="flex flex-col items-start gap-1">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider leading-relaxed text-left">
+                    <span style={{ color: overallColor }}>Signal:</span> mild concern driven by investment focus; core performance stable.
+                  </p>
+                  <p className="text-[9px] font-bold text-slate-600 uppercase tracking-widest italic banner-text">
+                    Note: Names of managers and associated entities have been redacted to ensure privacy.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -183,7 +178,7 @@ export function Overview() {
                 <div>
                   <h2 className="text-xl font-black text-white uppercase tracking-tight group-hover:text-amber-400 transition-colors"
                       style={{ color: undefined }}>Key Insights</h2>
-                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Strategic intelligence layer</p>
+                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">What you need to know</p>
                 </div>
               </div>
               <ChevronRight className="w-6 h-6 text-slate-600 group-hover:text-white group-hover:translate-x-1 transition-all" />
@@ -205,7 +200,7 @@ export function Overview() {
                 </div>
                 <div>
                   <h2 className="text-xl font-black text-white uppercase tracking-tight group-hover:text-blue-400 transition-colors">Calculations</h2>
-                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Precision rounding & logic</p>
+                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">How we got the score</p>
                 </div>
               </div>
               <ChevronRight className="w-6 h-6 text-slate-600 group-hover:text-white group-hover:translate-x-1 transition-all" />
@@ -216,7 +211,7 @@ export function Overview() {
         {/* Main Analysis Sections */}
         <section className="space-y-6">
           <div className="flex items-center gap-4">
-            <h2 className="text-xs font-black text-slate-400 uppercase tracking-[0.4em]">Analysis Breakdown</h2>
+            <h2 className="text-xs font-black text-slate-400 uppercase tracking-[0.4em]">Deep Dive Sections</h2>
             <div className="flex-1 h-px bg-slate-800"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">

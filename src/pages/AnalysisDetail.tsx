@@ -40,7 +40,7 @@ export function AnalysisDetail() {
             onMouseLeave={(e) => ((e.currentTarget as any).style.color = '')}
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span>Terminal Home</span>
+            <span>Back to Home</span>
           </button>
           
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
@@ -61,7 +61,7 @@ export function AnalysisDetail() {
             
             <div className="flex items-center gap-6">
               <div className="flex flex-col items-end">
-                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Module Rating</span>
+                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Category Score</span>
                 <div 
                   className="px-6 py-3 rounded-2xl text-4xl font-black shadow-2xl flex items-center gap-3 border backdrop-blur-md"
                   style={{ 
@@ -98,7 +98,7 @@ export function AnalysisDetail() {
             <div className="relative">
               <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] mb-8 flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }}></span>
-                Executive Intelligence Summary
+                Main Findings
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
                 {analysis.summaryPoints.map((point, idx) => (
@@ -165,7 +165,7 @@ export function AnalysisDetail() {
 
         {analysis.datasetNotes && analysis.datasetNotes.length > 0 && (
           <div className="glass-card rounded-2xl p-8 border-white/5 bg-slate-900/20 backdrop-blur-sm">
-            <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] mb-6">System Data Integrity Notes</h3>
+            <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] mb-6">Data Quality Notes</h3>
             <div className="space-y-4">
               {analysis.datasetNotes.map((note, idx) => (
                 <div key={idx} className="flex items-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
