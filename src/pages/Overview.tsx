@@ -297,10 +297,7 @@ export function Overview() {
               >
                 View Detailed Calculations
               </button>
-            </button>
             </div>
-          </div>
-        </div>
           </div>
         </div>
       )}
