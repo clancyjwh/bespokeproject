@@ -1,6 +1,6 @@
+import React, { useState } from 'react';
 import { AlertCircle, ChevronRight, Calculator, Lightbulb, Info, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { AnalysisCard } from '../components/AnalysisCard';
 import { TrendCard } from '../components/TrendCard';
 import { ScoreSlider } from '../components/ScoreSlider';
