@@ -34,7 +34,7 @@ export function AnalysisDetail() {
         <div className="max-w-7xl mx-auto px-8 py-6">
           <button
             onClick={() => navigate('/')}
-            className="flex items-center gap-2 text-slate-500 transition-all group font-black uppercase text-[10px] tracking-widest"
+            className="flex items-center gap-2 text-slate-500 transition-all group font-black uppercase text-[10px] tracking-widest mb-6"
             style={{ color: undefined }}
             onMouseEnter={(e) => ((e.currentTarget as any).style.color = color)}
             onMouseLeave={(e) => ((e.currentTarget as any).style.color = '')}
@@ -63,10 +63,15 @@ export function AnalysisDetail() {
               <div className="flex flex-col items-end">
                 <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Module Rating</span>
                 <div 
-                  className="px-6 py-3 rounded-2xl text-4xl font-black text-white shadow-2xl flex items-center gap-3 border backdrop-blur-md"
-                  style={{ backgroundColor: `${color}26`, borderColor: `${color}4d`, boxShadow: `0 0 30px ${color}26` }}
+                  className="px-6 py-3 rounded-2xl text-4xl font-black shadow-2xl flex items-center gap-3 border backdrop-blur-md"
+                  style={{ 
+                    backgroundColor: `${color}26`, 
+                    borderColor: `${color}4d`, 
+                    boxShadow: `0 0 30px ${color}26`,
+                    color: color 
+                  }}
                 >
-                  <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                  <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: color }}></span>
                   {analysis.score > 0 ? '+' : ''}{analysis.score}
                 </div>
               </div>

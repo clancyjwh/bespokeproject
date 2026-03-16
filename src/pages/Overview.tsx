@@ -120,7 +120,13 @@ export function Overview() {
                     boxShadow: `0 0 50px ${overallColor}26`
                   }}
                 >
-                  <span className="text-6xl font-black text-white tracking-tighter drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                  <span 
+                    className="text-6xl font-black tracking-tighter"
+                    style={{ 
+                      color: overallColor,
+                      filter: `drop-shadow(0 0 15px ${overallColor}80)`
+                    }}
+                  >
                     {overallScore > 0 ? '+' : ''}
                     {overallScore}
                   </span>

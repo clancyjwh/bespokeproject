@@ -62,7 +62,7 @@ export function ScoreSlider({ score, min = -10, max = 10 }: ScoreSliderProps) {
               className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-lg border border-white/10 shadow-2xl backdrop-blur-md z-20 flex flex-col items-center"
               style={{ backgroundColor: `${markerColor}33` }}
             >
-              <span className="text-[10px] font-black text-white whitespace-nowrap tracking-tighter">
+              <span className="text-[10px] font-black whitespace-nowrap tracking-tighter" style={{ color: markerColor }}>
                 {score > 0 ? '+' : ''}{score}
               </span>
               <div 
